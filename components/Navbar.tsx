@@ -7,6 +7,7 @@ import { Logo } from "./Logo";
 import { Menu, X } from "lucide-react";
 
 const links = [
+  ["Home", "/"],
   ["Upcoming Shows", "/upcoming-shows"],
   ["Artists", "/artists"],
   ["Submission", "/submit"],
