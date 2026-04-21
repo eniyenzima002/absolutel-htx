@@ -17,7 +17,7 @@ export function Hero() {
             {/* <p className="mb-4 text-sm font-bold uppercase tracking-[0.42em] text-white/90">
               {site.location}
             </p> */}
-            <h1 className="text-5xl font-black leading-[0.95] text-butter/85 drop-shadow-[0_6px_0_rgba(90,58,56,0.35)] sm:text-7xl lg:text-7xl pt-14">
+            <h1 className="text-5xl font-black leading-[0.95] text-butter drop-shadow-[0_6px_0_rgba(90,58,56,0.35)] sm:text-7xl lg:text-7xl pt-14">
               <span className="lg:text-8xl">Houston Music</span> <br />
               Showcase Venue
             </h1>

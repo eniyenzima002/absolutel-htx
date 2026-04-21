@@ -14,7 +14,7 @@ html {
 body {
   color: var(--foreground);
   /* background: var(--background); */
-  background-image: url('/bg-cat.png');
+  background-image: url('/bg-img1.png');
   background-size: cover;
   background-attachment: fixed;
 }
@@ -46,7 +46,7 @@ body::before {
   }
 
   .section-heading {
-    @apply text-3xl font-black sm:text-4xl lg:text-7xl text-butter/85;
+    @apply text-3xl font-black sm:text-4xl lg:text-7xl text-butter/90;
   }
 
   .section-copy {
