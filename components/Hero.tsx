@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div
-        className="relative h-[85vh] bg-cover bg-center"
+        className="relative min-h-[85vh] bg-cover bg-center"
         style={{ backgroundImage: "url('/bg-cat.png')" }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-cocoa/25 via-white/10 to-transparent" />
