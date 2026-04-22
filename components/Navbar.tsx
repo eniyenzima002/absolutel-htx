@@ -4,10 +4,11 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Logo } from "./Logo";
-import { Menu, X } from "lucide-react";
+import { House, Menu, X } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
 
 const links = [
-  ["Home", "/"],
+  // ["Home", "/"],
   ["Upcoming Shows", "/upcoming-shows"],
   ["Artists", "/artists"],
   ["Submission", "/submit"],
@@ -22,9 +23,10 @@ export function Navbar() {
     <>
       <header className="absolute inset-x-0 top-0 z-40">
         <div className="">
-          <div className="flex items-center justify-between sm:px-6">
+          <div className="flex text-white items-center justify-between py-6 sm:px-6">
             <Link href="/" aria-label="Absolutely HTX home">
-              <Logo className="scale-90 origin-left sm:scale-100 hover:bg-amber-700/10 rounded-full" />
+              {/* <Logo className="scale-90 origin-left sm:scale-100 hover:bg-amber-700/10 rounded-full" /> */}
+              <House size={38} />
             </Link>
             <button
               className="md:hidden text-white/90 hover:text-amber-300 px-7"
@@ -32,12 +34,12 @@ export function Navbar() {
             >
               <Menu size={45} />
             </button>
-            <nav className="hidden items-center gap-6 md:flex">
+            <nav className="hidden items-center border rounded-xl px-3 py-0.5 bg-slate-400/30 gap-6 md:flex">
               {links.map(([label, href]) => (
                 <Link
                   key={href}
                   href={href}
-                  className={`text-lg font-normal transition p-1 rounded-lg border-b ${
+                  className={`text-lg font-normal transition p-1 rounded-lg ${
                     pathname === href
                       ? "text-amber-300 border-amber-300"
                       : "text-white/90 hover:text-amber-300 hover:border-amber-300"
@@ -47,6 +49,10 @@ export function Navbar() {
                 </Link>
               ))}
             </nav>
+            <Link href="/" aria-label="Absolutely HTX home">
+              {/* <Logo className="scale-90 origin-left sm:scale-100 hover:bg-amber-700/10 rounded-full" /> */}
+              <FaInstagram size={42}/>
+            </Link>
           </div>
         </div>
       </header>

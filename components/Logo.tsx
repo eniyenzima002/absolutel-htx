@@ -11,7 +11,7 @@ export function Logo({ className = "" }: { className?: string }) {
       </div> */}
       <div>
         <div className="text-[1.85rem] font-black italic leading-none text-butter drop-shadow-[0_4px_0_rgba(90,58,56,0.4)] sm:text-[2.5rem]">
-          <Image src="/logo.png" alt="Absolutely HTX logo text" width={250} height={50} />
+          <Image src="/logo5.png" alt="Absolutely HTX logo text" width={1000} height={50} />
         </div>
         {/* <div className="mt-1 text-xs font-semibold uppercase tracking-[0.38em] text-white/90 sm:text-sm">
           Open Mic Venue

@@ -13,8 +13,8 @@ export default function HomePage() {
       <section className="container-shell py-10 sm:py-16">
         <div className="text-center">
           {/* <p className="text-lg font-bold uppercase tracking-[0.34em] text-amber-300">Upcoming Shows</p> */}
-          <h2 className="section-heading mt-4 ">Nights worth stepping out for</h2>
-          <p className="section-copy">
+          <h2 className="section-heading text-cocoa">Nights worth stepping out for</h2>
+          <p className="section-copy text-black/80">
             A front page that feels personal, polished, and ready to convert visitors into guests.
           </p>
         </div>
