@@ -10,51 +10,42 @@ export default function HomePage() {
     <main>
       <Hero />
 
-      <section className="container-shell py-10 sm:py-16">
-        <div className="text-center">
-          {/* <p className="text-lg font-bold uppercase tracking-[0.34em] text-amber-300">Upcoming Shows</p> */}
-          <h2 className="section-heading text-cocoa">Nights worth stepping out for</h2>
-          <p className="section-copy text-black/80">
-            A front page that feels personal, polished, and ready to convert visitors into guests.
-          </p>
-        </div>
+      <section className="py-10 sm:py-16 bg-gradient-to-r from-black/80 via-black to-black/80">
+        <div className="container-shell">
+          <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+            <h1 className="section-heading uppercase bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent">
+              Upcoming Shows</h1>
+            <div>
+              <Link href="/submit" className="pill-btn border border-amber-500/15 bg-amber-700/90 text-white hover:bg-amber-800/90">
+                Submit a Request
+              </Link>
+            </div>
+          </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {events.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+
         </div>
       </section>
 
-      <section className="container-shell py-10 sm:py-16">
-        <div className="glass-card overflow-hidden p-7 sm:p-10">
-          <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[0.34em] text-plum">Featured Artists</p>
-              <h2 className="section-heading mt-4 text-cocoa">A venue that feels like community</h2>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-cocoa/80 sm:text-lg">
-                Use this section to spotlight local voices, recurring hosts, and artists people will want to follow.
-                It makes the venue feel alive before anyone even arrives.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-4">
-                <Link href="/artists" className="pill-btn bg-cocoa text-butter hover:bg-plum">
-                  See Artists
-                </Link>
-                <Link href="/submit" className="pill-btn border border-cocoa/15 bg-white/60 text-cocoa hover:bg-white">
-                  Request To Perform
-                </Link>
-              </div>
-            </div>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-1">
-              {artists.slice(0, 2).map((artist) => (
-                <ArtistCard key={artist.name} artist={artist} />
-              ))}
-            </div>
+      <section className="py-10 sm:py-16 bg-gradient-to-r from-black/90 via-indigo-950 to-black/90">
+        <div className="container-shell">
+          <div className="mb-12">
+            <p className="section-heading uppercase bg-gradient-to-r from-red-400 via-teal-400 to-pink-600 bg-clip-text text-transparent">
+              Featured Artists</p>
+          </div>
+          <div className="grid gap-5 grid-cols-1 md:grid-cols-3 ">
+            {artists.slice(0, 3).map((artist) => (
+              <ArtistCard key={artist.name} artist={artist} />
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="container-shell py-10 sm:py-16">
+      {/* <section className="container-shell py-10 sm:py-16">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="glass-card p-7 sm:p-9">
             <p className="text-sm font-bold uppercase tracking-[0.34em] text-plum">Submission Form</p>
@@ -89,7 +80,7 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

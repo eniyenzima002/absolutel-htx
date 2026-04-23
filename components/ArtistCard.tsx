@@ -19,9 +19,9 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         />
 
       </div>
-      <h3 className="mt-5 text-2xl font-black text-cocoa">{artist.name}</h3>
+      <h3 className="mt-5 text-2xl font-black bg-gradient-to-r from-red-500 to-teal-500 bg-clip-text text-transparent">{artist.name}</h3>
       <p className="mt-2 text-sm font-semibold uppercase tracking-[0.25em] text-plum">{artist.genre}</p>
-      <p className="mt-4 text-base leading-7 text-cocoa/80">{artist.bio}</p>
+      <p className="mt-4 text-base leading-7 text-white/40">{artist.bio}</p>
     </article>
   );
 }
