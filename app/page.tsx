@@ -16,9 +16,9 @@ export default function HomePage() {
             <h1 className="section-heading uppercase bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent">
               Upcoming Shows</h1>
             <div>
-              <Link href="/submit" className="pill-btn border border-amber-500/15 bg-amber-700/90 text-white hover:bg-amber-800/90">
+              {/* <Link href="/submit" className="pill-btn border border-amber-500/15 bg-amber-700/90 text-white hover:bg-amber-800/90">
                 Submit a Request
-              </Link>
+              </Link> */}
             </div>
           </div>
 
