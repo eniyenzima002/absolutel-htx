@@ -3,8 +3,9 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-import { Home, House, Menu, X } from "lucide-react";
+import { Home, Menu, X } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
 const links = [
@@ -42,18 +43,28 @@ export function Navbar() {
           }`}
         >
           <div className="flex justify-between px-4 py-4 sm:px-6">
-            <Link href="/" className="flex items-center gap-2">
-              <Home
-                className="text-white/70 hover:text-amber-300 hidden sm:inline"
-                size={43}
-              />
-            </Link>
-            <button
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
+            >
+              <Link href="/" className="flex items-center gap-2">
+                <Home
+                  className="text-white/70 hover:text-amber-300 hidden sm:inline"
+                  size={43}
+                />
+              </Link>
+            </motion.div>
+
+            <motion.button
               className="text-white/70 hover:text-amber-300"
               onClick={() => setOpen(!open)}
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.15 }}
             >
               <Menu size={45} />
-            </button>
+            </motion.button>
           </div>
         </div>
       </header>
@@ -68,22 +79,33 @@ export function Navbar() {
             <X size={45} className="text-red-600" />
           </button>
 
-          {links.map(([label, href]) => (
-            <Link
+          {links.map(([label, href], index) => (
+            <motion.div
               key={href}
-              href={href}
-              onClick={() => setOpen(false)}
-              className={`text-2xl bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent font-normal transition ${
-                pathname === href
-                  ? "text-amber-300"
-                  : "text-white/90 hover:text-amber-300"
-              }`}
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.45,
+                ease: "easeOut",
+                delay: 0.08 * index,
+              }}
             >
-              {label}
-            </Link>
+              <Link
+                href={href}
+                onClick={() => setOpen(false)}
+                className={`text-2xl bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent font-normal transition ${
+                  pathname === href
+                    ? "text-amber-300"
+                    : "text-white/90 hover:text-amber-300"
+                }`}
+              >
+                {label}
+              </Link>
+            </motion.div>
           ))}
         </div>
       )}
     </>
   );
 }
+

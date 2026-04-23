@@ -1,6 +1,6 @@
 export const site = {
   name: "Absolutely HTX",
-  tagline: "\u00a9 Designed and developed by N.S. Emmanuel -",
+  tagline: "\u00a9 Designed and developed by N.S. Emmanuel.",
   email: "hello@absolutelyhtx.com",
   instagram: "@absolutelyhtx",
   location: "Houston, Texas",
