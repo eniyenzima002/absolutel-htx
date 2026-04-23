@@ -17,8 +17,8 @@ export function EventCard({ event }: { event: Event }) {
       <div className="">
         <img src={event.image} alt={event.title} className="h-48 w-full object-cover rounded-t-xl" />
       </div>
-      <h3 className="mt-2 text-xl font-black bg-gradient-to-r from-red-500 via-lime-400 to-pink-500 bg-clip-text text-transparent px-3">{event.title}</h3>
-      <div className="mt-3 flex flex-wrap gap-4 text-sm text-amber-700/70 px-3">
+      <h3 className="mt-2 text-xl font-black bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent px-3">{event.title}</h3>
+      <div className="mt-3 flex flex-wrap gap-4 text-sm text-sky-300/95 px-3">
         <span className="inline-flex items-center gap-2">
           <CalendarDays size={16} /> {event.date}
         </span>
