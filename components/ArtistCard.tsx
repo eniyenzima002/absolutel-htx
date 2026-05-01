@@ -1,9 +1,13 @@
+
+// Here is - Artist Card
+
 "use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 type Artist = {
+  _id?: string;
   name: string;
   genre: string;
   bio: string;
@@ -11,9 +15,14 @@ type Artist = {
 };
 
 export function ArtistCard({ artist }: { artist: Artist }) {
+  const shortBio =
+  artist.bio.length > 150
+    ? artist.bio.slice(0, 150).replace(/\s+\S*$/, "") + "..."
+      : artist.bio;
+  
   return (
     <motion.article
-      className="glass-card p-6 text-center"
+      className="glass-card px-6 py-4 text-center"
       initial={{ opacity: 0, y: 24, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -55,14 +64,23 @@ export function ArtistCard({ artist }: { artist: Artist }) {
       </motion.p>
 
       <motion.p
-        className="mt-4 text-base leading-7 text-white/40"
+        className="mt-4 text-base text-left leading-7 text-white/40"
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 }}
       >
-        {artist.bio}
+        {shortBio}
       </motion.p>
+
+      {artist._id && artist.bio.length > 180 && (
+        <a
+          href={`/artists/${artist._id}`}
+          className="mt-2 inline-block text-sm font-bold text-amber-300 hover:text-rose"
+        >
+          Read more...
+        </a>
+      )}
     </motion.article>
   );
 }

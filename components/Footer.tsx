@@ -26,7 +26,7 @@ export function Footer() {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
           >
             <Image
-              src="/logo.png"
+              src="/logo5.png"
               alt={site.name}
               width={250}
               height={50}
@@ -45,6 +45,7 @@ export function Footer() {
             <Link href="/artists">Artists</Link>
             <Link href="/submit">Submission</Link>
             <Link href="/contact">Contact</Link>
+            <Link target="_blank" href="/login">Admin</Link>
           </motion.div>
         </div>
 

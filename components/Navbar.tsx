@@ -1,3 +1,5 @@
+
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -6,13 +8,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { Home, Menu, X } from "lucide-react";
-import { FaInstagram } from "react-icons/fa";
 
 const links = [
   ["Home", "/"],
   ["Upcoming Shows", "/upcoming-shows"],
   ["Artists", "/artists"],
-  ["Submission", "/submit"],
+  // ["Submission", "/submit"],
   ["Contact", "/contact"],
 ];
 
@@ -20,6 +21,8 @@ export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const isAdminPage = pathname.startsWith("/dashboard");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +34,8 @@ export function Navbar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (isAdminPage) return null;
 
   return (
     <>

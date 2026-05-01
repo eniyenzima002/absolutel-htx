@@ -1,3 +1,5 @@
+// Here is Artist Page
+/*
 import { ArtistCard } from "@/components/ArtistCard";
 import { artists } from "@/lib/data";
 
@@ -5,7 +7,6 @@ export default function ArtistsPage() {
   return (
     <main className="container-shell pt-36 pb-16">
       <div className="text-center bg-gradient-to-r from-black/50 via-black/90 to-black/50 p-10 rounded-xl">
-        {/* <p className="text-sm font-bold uppercase tracking-[0.34em] text-plum">Artists</p> */}
         <h1 className="section-heading mt-4">The voices that make the room glow</h1>
         <p className="section-copy">
           Highlight featured performers, hosts, and recurring artists to make the venue feel active and loved.
@@ -17,6 +18,65 @@ export default function ArtistsPage() {
           <ArtistCard key={artist.name} artist={artist} />
         ))}
       </div>
+    </main>
+  );
+}
+*/
+
+import { ArtistCard } from "@/components/ArtistCard";
+
+type Artist = {
+  _id: string;
+  name: string;
+  genre: string;
+  bio: string;
+  image: string;
+};
+
+async function getArtists(): Promise<Artist[]> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/artists`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) return [];
+
+  return res.json();
+}
+
+export default async function ArtistsPage() {
+  const artists = await getArtists();
+
+  return (
+    <main className="container-shell pt-36 pb-16">
+      <div className="text-center bg-gradient-to-r from-black/50 via-black/90 to-black/50 p-10 rounded-xl">
+        <h1 className="section-heading mt-4">
+          The voices that make the room glow
+        </h1>
+        <p className="section-copy">
+          Highlight featured performers, hosts, and recurring artists to make
+          the venue feel active and loved.
+        </p>
+      </div>
+
+      {artists.length === 0 ? (
+        <div className="mt-12 rounded-3xl border border-white/10 bg-black/60 p-10 text-center">
+          <h2 className="text-2xl font-black text-butter">No featured artists</h2>
+          <p className="mt-3 text-white/50">
+            Check back soon for featured Absolutely HTX artists.
+          </p>
+        </div>
+      ) : (
+        <div className="mt-12 flex gap-6 overflow-x-auto scroll-smooth pb-6 snap-x snap-mandatory">
+          {artists.map((artist) => (
+            <div
+              key={artist._id}
+              className="min-w-[280px] sm:min-w-[320px] xl:min-w-[360px] snap-start"
+            >
+              <ArtistCard artist={artist} />
+            </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }
