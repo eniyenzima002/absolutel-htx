@@ -67,21 +67,33 @@ export default function ContactPage() {
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    formData.append("form-name", "contact");
+  const form = e.currentTarget;
+  const formData = new FormData(form);
 
-    await fetch("/", {
-      method: "POST",
-      body: new URLSearchParams(formData as any).toString(),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
+  formData.append("form-name", "contact");
 
+  const encoded = new URLSearchParams();
+
+  formData.forEach((value, key) => {
+    encoded.append(key, value.toString());
+  });
+
+  const res = await fetch("/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: encoded.toString(),
+  });
+
+  if (res.ok) {
     router.push("/thank-you");
+  } else {
+    alert("Something went wrong. Please try again.");
   }
+}
 
   return (
     <main className="container-shell pt-36 pb-16">
