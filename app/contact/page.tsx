@@ -58,9 +58,31 @@ export default function ContactPage() {
 }
 */
 
+"use client";
+
+import { useRouter } from "next/navigation";
 import { FormCard } from "@/components/FormCard";
 
 export default function ContactPage() {
+  const router = useRouter();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("form-name", "contact");
+
+    await fetch("/", {
+      method: "POST",
+      body: new URLSearchParams(formData as any).toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    router.push("/thank-you");
+  }
+
   return (
     <main className="container-shell pt-36 pb-16">
       <div className="">
@@ -69,19 +91,13 @@ export default function ContactPage() {
           copy="Use this page for artist submissions, venue questions, booking inquiries, private event requests, and general community messages."
         >
           <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            action="/thank-you"
+            onSubmit={handleSubmit}
             className="grid gap-8 sm:grid-cols-2"
           >
-            {/* ✅ REQUIRED for Netlify */}
-            <input type="hidden" name="form-name" value="contact" />
-
             <label className="relative block">
               <input
-                name="name"                // ✅ REQUIRED
-                required                  // ✅ recommended
+                name="name"
+                required
                 placeholder=" "
                 className="peer w-full border-b border-butter/50 bg-transparent px-0 pt-6 pb-2 outline-none placeholder:text-transparent focus:border-rose focus:border-b-2"
               />
@@ -92,7 +108,7 @@ export default function ContactPage() {
 
             <label className="relative block">
               <input
-                name="email"              // ✅ REQUIRED
+                name="email"
                 type="email"
                 required
                 placeholder=" "
@@ -105,7 +121,7 @@ export default function ContactPage() {
 
             <label className="relative block sm:col-span-2">
               <textarea
-                name="message"           // ✅ REQUIRED
+                name="message"
                 rows={7}
                 required
                 placeholder=" "
@@ -117,7 +133,6 @@ export default function ContactPage() {
             </label>
 
             <div className="sm:col-span-2">
-              {/* ❗ must be submit */}
               <button
                 type="submit"
                 className="pill-btn bg-cocoa text-butter hover:bg-plum"
@@ -131,4 +146,3 @@ export default function ContactPage() {
     </main>
   );
 }
-

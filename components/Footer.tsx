@@ -43,7 +43,7 @@ export function Footer() {
           >
             <Link href="/upcoming-shows">Shows</Link>
             <Link href="/artists">Artists</Link>
-            <Link href="/submit">Submission</Link>
+            {/* <Link href="/submit">Submission</Link> */}
             <Link href="/contact">Contact</Link>
             <Link target="_blank" href="/login">Admin</Link>
           </motion.div>
