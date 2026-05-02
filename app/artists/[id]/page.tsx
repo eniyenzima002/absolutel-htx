@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 type Artist = {
   _id: string;
   name: string;
-  genre: string;
+  // genre: string;
   bio: string;
   image: string;
 };
@@ -33,7 +33,11 @@ export default async function ArtistDetailsPage({
   }
 
   return (
-    <main className="container-shell pt-36 pb-16">
+    <main className="container-shell pt-36 pb-16 relative min-h-[85vh] bg-cover bg-center"
+    style={{ backgroundImage: "url('/bg-cat.png')" }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
       <Link href="/artists" className="text-amber-300 hover:text-rose">
         ← Back to Artists
       </Link>
@@ -50,9 +54,9 @@ export default async function ArtistDetailsPage({
           </div>
 
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.3em] text-amber-300">
+            {/* <p className="text-sm font-bold uppercase tracking-[0.3em] text-amber-300">
               {artist.genre}
-            </p>
+            </p> */}
 
             <h1 className="mt-4 text-5xl font-black bg-gradient-to-r from-red-400 via-teal-400 to-pink-500 bg-clip-text text-transparent">
               {artist.name}

@@ -96,7 +96,11 @@ export default function ContactPage() {
 }
 
   return (
-    <main className="container-shell pt-36 pb-16">
+    <main className="container-shell pt-36 pb-16 relative min-h-[85vh] bg-cover bg-center"
+    style={{ backgroundImage: "url('/bg-cat.png')" }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
       <div className="">
         <FormCard
           title="Contact Us"
