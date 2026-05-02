@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 type Artist = {
   _id?: string;
   name: string;
-  genre: string;
+  // genre: string;
   bio: string;
   image: string;
 };
@@ -53,7 +53,7 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         {artist.name}
       </motion.h3>
 
-      <motion.p
+      {/* <motion.p
         className="mt-2 text-sm font-semibold uppercase tracking-[0.25em] text-plum"
         initial={{ opacity: 0, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         transition={{ duration: 0.55, ease: "easeOut", delay: 0.2 }}
       >
         {artist.genre}
-      </motion.p>
+      </motion.p> */}
 
       <motion.p
         className="mt-4 text-base text-left leading-7 text-white/40"

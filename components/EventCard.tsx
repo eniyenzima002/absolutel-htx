@@ -46,7 +46,7 @@ export function EventCard({ event }: { event: Event }) {
           <img
             src={event.image}
             alt={event.title}
-            className="h-48 w-full object-cover rounded-t-xl"
+            className="h-full w-full object-cover rounded-t-xl"
           />
         ) : (
           <img

@@ -52,15 +52,19 @@ export default async function UpcomingShowsPage() {
   const events = await getEvents();
 
   return (
-    <main className="container-shell pt-36 pb-16">
-      <div className="text-center bg-gradient-to-r from-black/50 via-black/90 to-black/50 p-10 rounded-xl">
+    <main className="container-shell pt-36 pb-16 relative min-h-[85vh] bg-cover bg-center"
+      style={{ backgroundImage: "url('/bg-cat.png')" }}
+    >
+      <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+      {/* <div className="text-center bg-gradient-to-r from-black/50 via-black/90 to-black/50 p-10 rounded-xl">
         <h1 className="section-heading mt-4">
           Every show should feel like a reason to show up
         </h1>
         <p className="section-copy">
           Browse upcoming Absolutely HTX shows, RSVP, or grab tickets through Ticket Tailor.
         </p>
-      </div>
+      </div> */}
 
       {events.length === 0 ? (
         <div className="mt-12 rounded-3xl border border-white/10 bg-black/60 p-10 text-center">
