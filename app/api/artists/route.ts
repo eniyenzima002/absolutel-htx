@@ -6,7 +6,7 @@ import { Artist } from "@/models/Artist";
 
 export async function GET() {
   await connectDB();
-  const artists = await Artist.find().sort({ createdAt: -1 });
+  const artists = await Artist.find().sort({ _id: 1 });
   return NextResponse.json(artists);
 }
 
