@@ -41,6 +41,7 @@ export function Footer() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
           >
+            <Link href="/">Home</Link>
             <Link href="/upcoming-shows">Shows</Link>
             <Link href="/artists">Artists</Link>
             {/* <Link href="/submit">Submission</Link> */}

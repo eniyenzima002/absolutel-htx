@@ -39,7 +39,7 @@ export default async function ArtistDetailsPage({
       {/* <Link href="/artists" className="text-amber-300 hover:text-rose">
         ← Back to Artists
       </Link> */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/50 z-1" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
 
       <section className="mt-8 rounded-3xl border border-white/10 bg-black/70 p-6 text-white shadow-2xl sm:p-10">
