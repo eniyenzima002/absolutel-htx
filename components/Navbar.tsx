@@ -9,8 +9,7 @@ const links = [
   ["Home", "home"],
   ["Upcoming Shows", "events"],
   ["Artists", "artists"],
-  ["Gallery", "gallery"],
-  ["Contact", "/contact"],
+  ["Contact", "contact"],
 ];
 
 export function Navbar() {

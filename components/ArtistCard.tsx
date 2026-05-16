@@ -1,25 +1,27 @@
-
-// Here is - Artist Card
-
 "use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 type Artist = {
-  _id?: string;
+  _id: string;
   name: string;
-  // genre: string;
   bio: string;
   image: string;
 };
 
-export function ArtistCard({ artist }: { artist: Artist }) {
+export function ArtistCard({
+  artist,
+  onReadMore,
+}: {
+  artist: Artist;
+  onReadMore?: (artist: Artist) => void;
+}) {
   const shortBio =
-  artist.bio.length > 150
-    ? artist.bio.slice(0, 150).replace(/\s+\S*$/, "") + "..."
+    artist.bio.length > 150
+      ? artist.bio.slice(0, 150).replace(/\s+\S*$/, "") + "..."
       : artist.bio;
-  
+
   return (
     <motion.article
       className="glass-card px-6 py-4 text-center"
@@ -35,12 +37,18 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
       >
-        <Image
-          src={artist.image}
-          alt={artist.name}
-          fill
-          className="object-cover"
-        />
+        {artist.image ? (
+          <Image
+            src={artist.image}
+            alt={artist.name}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-black/40 text-xs text-white/40">
+            No Image
+          </div>
+        )}
       </motion.div>
 
       <motion.h3
@@ -53,16 +61,6 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         {artist.name}
       </motion.h3>
 
-      {/* <motion.p
-        className="mt-2 text-sm font-semibold uppercase tracking-[0.25em] text-plum"
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.55, ease: "easeOut", delay: 0.2 }}
-      >
-        {artist.genre}
-      </motion.p> */}
-
       <motion.p
         className="mt-4 text-base text-left leading-7 text-white/40"
         initial={{ opacity: 0, y: 14 }}
@@ -73,14 +71,16 @@ export function ArtistCard({ artist }: { artist: Artist }) {
         {shortBio}
       </motion.p>
 
-      {artist._id && artist.bio.length > 180 && (
-        <a
-          href={`/artists/${artist._id}`}
+      {artist.bio.length > 150 && (
+        <button
+          type="button"
+          onClick={() => onReadMore?.(artist)}
           className="mt-2 inline-block text-sm font-bold text-amber-300 hover:text-rose"
         >
           Read more...
-        </a>
+        </button>
       )}
     </motion.article>
   );
 }
+

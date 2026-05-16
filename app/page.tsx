@@ -18,7 +18,6 @@ type Event = {
 type Artist = {
   _id: string;
   name: string;
-  genre: string;
   bio: string;
   image: string;
 };

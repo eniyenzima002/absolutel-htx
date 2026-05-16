@@ -1,3 +1,6 @@
+
+// Here is the whole hero file
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -11,45 +14,80 @@ type Event = {
 };
 
 function Countdown({ nextEvent }: { nextEvent?: Event }) {
-  const [timeLeft, setTimeLeft] = useState("");
+  const [timeLeft, setTimeLeft] = useState({
+    days: "00",
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+  });
 
   useEffect(() => {
-  if (!nextEvent?.date) return;
+    if (!nextEvent?.date) return;
 
-  const interval = setInterval(() => {
-    const target = new Date(nextEvent.date).getTime();
-    const now = new Date().getTime();
-    const diff = target - now;
+    const interval = setInterval(() => {
+      const target = new Date(nextEvent.date).getTime();
+      const now = new Date().getTime();
+      const diff = target - now;
 
-    if (diff <= 0) {
-      setTimeLeft("Showtime!");
-      return;
-    }
+      if (diff <= 0) {
+        setTimeLeft({
+          days: "00",
+          hours: "00",
+          minutes: "00",
+          seconds: "00",
+        });
+        return;
+      }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
 
-    const dayLabel = days === 1 ? "Day" : "Days";
-    const hourLabel = hours === 1 ? "Hour" : "Hours";
-    const minuteLabel = minutes === 1 ? "Minute" : "Minutes";
+      setTimeLeft({
+        days: String(days).padStart(2, "0"),
+        hours: String(hours).padStart(2, "0"),
+        minutes: String(minutes).padStart(2, "0"),
+        seconds: String(seconds).padStart(2, "0"),
+      });
+    }, 1000);
 
-    setTimeLeft(
-      `${days} ${dayLabel}, ${hours} ${hourLabel} - ${minutes} ${minuteLabel}`
-    );
-  }, 1000);
+    return () => clearInterval(interval);
+  }, [nextEvent]);
 
-  return () => clearInterval(interval);
-}, [nextEvent]);
+  if (!nextEvent) return null;
 
-if (!nextEvent) return null;
+  const Box = ({ value, label }: { value: string; label: string }) => (
+    <div className="flex flex-col items-center">
+      <div className="min-w-[70px] rounded-2xl border border-white/10 bg-black/70 px-4 py-3 shadow-2xl backdrop-blur-md sm:min-w-[82px] sm:px-5 sm:py-4">
+        <span className="text-xl sm:text-4xl font-bold uppercase bg-gradient-to-r from-lime-700 via-purple-400 to-amber-700 bg-clip-text text-transparent">
+          {value}
+        </span>
+      </div>
+      <span className="mt-2 text-[10px] uppercase tracking-[0.25em] text-white/50 sm:text-xs">
+        {label}
+      </span>
+    </div>
+  );
 
   return (
-    <div className="mt-6 flex flex-col items-center justify-center gap-2 rounded-full border border-white/10 bg-black/50 px-4 py-3 text-butter shadow-2xl backdrop-blur-md">
-      <p className="text-xs uppercase tracking-[0.3em] text-white/50">
+    <div className="mt-8 flex flex-col items-center justify-center bg-black/50 px-1 py-3 rounded-3xl">
+      <p className="sm:text-2xl font-bold tracking-[0.15em] uppercase bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent mb-4 ">
         Next Show is happening in
       </p>
-      <p className="sm:text-2xl uppercase bg-gradient-to-r from-lime-300 via-purple-400 to-amber-300 bg-clip-text text-transparent">{timeLeft}</p>
+
+      <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-4">
+        <Box value={timeLeft.days} label="DD" />
+        <span className="text-2xl font-black text-white/40 sm:text-3xl">|</span>
+
+        <Box value={timeLeft.hours} label="HH" />
+        <span className="text-2xl font-black text-white/40 sm:text-3xl">|</span>
+
+        <Box value={timeLeft.minutes} label="MM" />
+        <span className="text-2xl font-black text-white/40 sm:text-3xl">|</span>
+
+        <Box value={timeLeft.seconds} label="SS" />
+      </div>
     </div>
   );
 }
@@ -87,3 +125,4 @@ export function Hero({ nextEvent }: { nextEvent?: Event }) {
     </section>
   );
 }
+

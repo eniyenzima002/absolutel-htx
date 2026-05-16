@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { EventCard } from "@/components/EventCard";
 import { ArtistCard } from "@/components/ArtistCard";
+import { ContactSection } from "@/components/ContactSection";
+import Image from "next/image";
 
 type Event = {
   _id: string;
@@ -21,7 +23,6 @@ type Event = {
 type Artist = {
   _id: string;
   name: string;
-  genre: string;
   bio: string;
   image: string;
 };
@@ -48,6 +49,7 @@ export function HomeSections({
   const [visibleEvents, setVisibleEvents] = useState(3);
   const [visibleArtists, setVisibleArtists] = useState(3);
   const [visibleGallery, setVisibleGallery] = useState(6);
+  const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
 
   return (
     <>
@@ -120,7 +122,11 @@ export function HomeSections({
             <>
               <div className="mt-10 grid gap-5 grid-cols-1 md:grid-cols-3">
                 {artists.slice(0, visibleArtists).map((artist) => (
-                  <ArtistCard key={artist._id} artist={artist} />
+                  <ArtistCard
+                    key={artist._id}
+                    artist={artist}
+                    onReadMore={setSelectedArtist}
+                  />
                 ))}
               </div>
 
@@ -136,8 +142,9 @@ export function HomeSections({
           )}
         </div>
       </motion.section>
+      <ContactSection />
 
-      <motion.section
+      {/* <motion.section
         id="gallery"
         className="py-10 sm:py-16 bg-gradient-to-r from-black/90 via-black to-black/90 scroll-mt-24"
         initial={{ opacity: 0, y: 40 }}
@@ -170,7 +177,40 @@ export function HomeSections({
             </button>
           )}
         </div>
-      </motion.section>
+      </motion.section> */}
+      {selectedArtist && (
+        <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/85 p-4 backdrop-blur-md">
+          <div className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl border border-white/10 bg-black shadow-2xl">
+            <button
+              onClick={() => setSelectedArtist(null)}
+              className="absolute right-5 top-5 z-20 text-4xl text-red-500 hover:text-amber-300"
+            >
+              ×
+            </button>
+
+            <div className="relative h-72 w-full">
+              <Image
+                src={selectedArtist.image}
+                alt={selectedArtist.name}
+                fill
+                className="object-cover rounded-t-3xl"
+              />
+
+              <div className="absolute inset-0 rounded-t-3xl bg-gradient-to-t from-black via-black/40 to-transparent" />
+            </div>
+
+            <div className="p-8">
+              <h2 className="text-4xl font-black bg-gradient-to-r from-red-400 via-teal-400 to-pink-500 bg-clip-text text-transparent">
+                {selectedArtist.name}
+              </h2>
+
+              <p className="mt-6 text-lg leading-8 text-white/70">
+                {selectedArtist.bio}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

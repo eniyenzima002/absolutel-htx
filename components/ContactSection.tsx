@@ -1,59 +1,60 @@
-
-
-// How can we turn contact also into a section last after gallery instead of going to another page
-
 "use client";
 
 import { useRouter } from "next/navigation";
 import { FormCard } from "@/components/FormCard";
+import { motion } from "framer-motion";
 
-export default function ContactPage() {
+export function ContactSection() {
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-  e.preventDefault();
+    e.preventDefault();
 
-  const form = e.currentTarget;
-  const formData = new FormData(form);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-  formData.append("form-name", "contact");
+    formData.append("form-name", "contact");
 
-  const encoded = new URLSearchParams();
+    const encoded = new URLSearchParams();
 
-  formData.forEach((value, key) => {
-    encoded.append(key, value.toString());
-  });
+    formData.forEach((value, key) => {
+      encoded.append(key, value.toString());
+    });
 
-  const res = await fetch("/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: encoded.toString(),
-  });
+    const res = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: encoded.toString(),
+    });
 
-  if (res.ok) {
-    router.push("/thank-you");
-  } else {
-    alert("Something went wrong. Please try again.");
+    if (res.ok) {
+      router.push("/thank-you");
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
   }
-}
 
   return (
-    <main className="container-shell pt-36 pb-16 relative min-h-[85vh] bg-cover bg-center"
-    style={{ backgroundImage: "url('/bg-cat.png')" }}
+    <motion.section
+      id="contact"
+      className="relative min-h-[85vh] scroll-mt-24 overflow-hidden bg-cover bg-center py-20"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      style={{ backgroundImage: "url('/bg-cat.png')" }}
     >
-      <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
-      <div className="">
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80" />
+
+      <div className="container-shell relative z-10">
         <FormCard
           title="Contact Us"
           copy="Use this page for artist submissions, venue questions, booking inquiries, private event requests, and general community messages."
         >
-          <form
-            onSubmit={handleSubmit}
-            className="grid gap-8 sm:grid-cols-2"
-          >
+          <form onSubmit={handleSubmit} className="grid gap-8 sm:grid-cols-2">
             <label className="relative block">
               <input
                 name="name"
@@ -103,6 +104,9 @@ export default function ContactPage() {
           </form>
         </FormCard>
       </div>
-    </main>
+    </motion.section>
   );
 }
+
+
+
